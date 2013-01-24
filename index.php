@@ -192,7 +192,8 @@ switch ($_GET['f'])
 	  $result = mysql_query("INSERT INTO links (url) VALUES ('".mysql_real_escape_string($_POST['url'])."')") or die("ERROR");
 	  $id = mysql_insert_id();
 	} else {
-	  $id = mysql_fetch_assoc()['id'];
+	  $row = mysql_fetch_assoc();
+	  $id = $row['id'];
 	}
 	echo "Shorter url: <input type='text' value='http://".$domain.$path.alphaID($id)."' /><br /><br />";
       }

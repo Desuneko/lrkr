@@ -186,8 +186,14 @@ switch ($_GET['f'])
       {
 	echo "<b>Url you have entered is invalid...</b><br />";
       } else {
-	$result = mysql_query("INSERT INTO ".$links_table." (url) VALUES ('".mysql_real_escape_string($_POST['url'])."')") or die("ERROR");
-	$id = mysql_insert_id();
+	$result = mysql_query("SELECT * FROM links WHERE url=".mysql_real_escape_string($_POST['url']));
+	if ((!$result) || (mysql_num_rows($result) == 0))
+	{
+	  $result = mysql_query("INSERT INTO links (url) VALUES ('".mysql_real_escape_string($_POST['url'])."')") or die("ERROR");
+	  $id = mysql_insert_id();
+	} else {
+	  $id = mysql_fetch_assoc()['id'];
+	}
 	echo "Shorter url: <input type='text' value='http://".$domain.$path.alphaID($id)."' /><br /><br />";
       }
     }

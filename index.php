@@ -184,7 +184,7 @@ switch ($_GET['f'])
     {
       if (filter_var($_POST['url'], FILTER_VALIDATE_URL) == false)
       {
-	echo "<b>Url you have entered is invalid...</b><br />";
+	echo "<b>Please enter valid URL!</b><br />";
       } else {
 	$result = mysql_query("SELECT * FROM links WHERE url=".mysql_real_escape_string($_POST['url']));
 	if ((!$result) || (mysql_num_rows($result) == 0))

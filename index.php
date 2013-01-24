@@ -182,14 +182,14 @@ switch ($_GET['f'])
   case "add":
     if (isset($_POST['url']))
     {
-      if (filter_var($_POST['url'], FILTER_VALIDATE_URL) == false)
+      if (filter_var(trim($_POST['url']), FILTER_VALIDATE_URL) == false)
       {
 	echo "<b>Please enter valid URL!</b><br />";
       } else {
-	$result = mysql_query("SELECT * FROM links WHERE url='".mysql_real_escape_string($_POST['url'])."'");
+	$result = mysql_query("SELECT * FROM links WHERE url='".mysql_real_escape_string(trim($_POST['url']))."'");
 	if ((!$result) || (mysql_num_rows($result) == 0))
 	{
-	  $result = mysql_query("INSERT INTO links (url) VALUES ('".mysql_real_escape_string($_POST['url'])."')") or die("ERROR");
+	  $result = mysql_query("INSERT INTO links (url) VALUES ('".mysql_real_escape_string(trim($_POST['url']))."')") or die("ERROR");
 	  $id = mysql_insert_id();
 	} else {
 	  $row = mysql_fetch_assoc($result);

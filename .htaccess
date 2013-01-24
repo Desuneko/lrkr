@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteRule ^l(.*)$ /index.php?u=$1 [L,QSA]
+RewriteRule ^f(.*)$ /index.php?f=$1 [L,QSA]

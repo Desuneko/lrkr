@@ -186,7 +186,7 @@ switch ($_GET['f'])
       {
 	echo "<b>Please enter valid URL!</b><br />";
       } else {
-	$result = mysql_query("SELECT * FROM links WHERE url=".mysql_real_escape_string($_POST['url']));
+	$result = mysql_query("SELECT * FROM links WHERE url='".mysql_real_escape_string($_POST['url'])."'");
 	if ((!$result) || (mysql_num_rows($result) == 0))
 	{
 	  $result = mysql_query("INSERT INTO links (url) VALUES ('".mysql_real_escape_string($_POST['url'])."')") or die("ERROR");
